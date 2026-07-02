@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Open Quality - Agência de Marketing e Publicidade. Estratégia, criatividade e resultados para a sua marca.">
+    <meta name="author" content="Open Quality">
+    <title>Open Quality - Agência de Marketing e Publicidade</title>
+    <link rel="icon" type="image/png" href="logo1.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* RESET E VARIÁVEIS */
+        :root {
+            --primary: #FFC107;
+            --primary-hover: #FFB800;
+            --bg-dark: #0a0e27;
+            --bg-darker: #060919;
+            --text: #FFFFFF;
+            --text-muted: #a0a0a0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        /* BOTÕES */
+        .btn-primary, .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 193, 7, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        /* HEADER */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            background-color: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-open {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .logo-pen {
+            color: var(--text);
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        .logo-quality {
+            color: var(--primary);
+            font-size: 0.7rem;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 3px;
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            position: relative;
+        }
+
+        .hamburger::before, .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--text);
+        }
+
+        .hamburger::before { top: -8px; }
+        .hamburger::after { top: 8px; }
+
+        .btn-header {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* SEÇÕES */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* CONTAINER COM BORDA E GLOW */
+        .glow-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 193, 7, 0.3), 0 0 40px rgba(255, 193, 7, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(255, 193, 7, 0.5), 0 0 60px rgba(255, 193, 7, 0.2);
+            }
+        }
+
+        /* HERO - BANNER2 */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+        }
+
+        .hero-banner {
+            max-width: 720px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        /* DIFERENCIAIS */
+        .diferenciais {
+            background-color: var(--bg-darker);
+        }
+
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .diferencial-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: var(--transition);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .diferencial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+        }
+
+        .diferencial-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .diferencial-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .diferencial-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* SERVIÇOS */
+        .servicos {
+            background-color: var(--bg-dark);
+        }
+
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .servico-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: var(--transition);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+        }
+
+        .servico-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .servico-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .servico-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .servico-link {
+            color: var(--primary);
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .servico-link:hover {
+            gap: 0.6rem;
+        }
+
+        /* BANNER VERTICAL GIF */
+        .banner-vertical {
+            background-color: var(--bg-darker);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .banner-vertical img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            border: 2px solid var(--primary);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        /* CONTATO */
+        .contato {
+            background-color: var(--bg-dark);
+        }
+
+        .contato-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .contato-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contato-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            transition: var(--transition);
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .contato-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(255, 193, 7, 0.3);
+        }
+
+        .contato-icon {
+            font-size: 1.8rem;
+        }
+
+        .contato-text h4 {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .contato-text a, .contato-text span {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .contato-text a:hover {
+            color: var(--primary);
+        }
+
+        .contato-mensagem {
+            background: rgba(255, 193, 7, 0.05);
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+
+        .contato-mensagem h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contato-mensagem p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: var(--bg-darker);
+            border-top: 2px solid var(--primary);
+            padding: 3rem 0 2rem;
+        }
+
+        .footer-content {
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 193, 7, 0.2);
+            padding-top: 2rem;
+            margin-top: 2rem;
+        }
+
+        .footer-bottom p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-tagline {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-list {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: var(--bg-darker);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: var(--transition);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+
+            .nav-list.active {
+                right: 0;
+            }
+
+            .btn-header {
+                display: none;
+            }
+
+            .glow-container {
+                padding: 2rem;
+            }
+
+            .footer-wrapper {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo1.png" alt="Open Quality Logo">
+                <div class="logo-text">
+                    <div>
+                        <span class="logo-open">O</span><span class="logo-pen">pen</span>
+                    </div>
+                    <span class="logo-quality">QUALITY</span>
+                </div>
+            </div>
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Início</a></li>
+                    <li><a href="#diferenciais" class="nav-link">Diferenciais</a></li>
+                    <li><a href="#servicos" class="nav-link">Serviços</a></li>
+                    <li><a href="#contato" class="nav-link">Contato</a></li>
+                </ul>
+                <button class="nav-toggle" id="nav-toggle">
+                    <span class="hamburger"></span>
+                </button>
+            </nav>
+            <a href="https://wa.me/5521996793320" target="_blank" class="btn-primary btn-header">Fale Conosco</a>
+        </div>
+    </header>
+
+    <!-- HERO - BANNER2 -->
+    <section class="hero" id="home">
+        <div class="container">
+            <img src="banner2.png" alt="Open Quality - Soluções Completas" class="hero-banner">
+        </div>
+    </section>
+
+    <!-- DIFERENCIAIS -->
+    <section class="diferenciais" id="diferenciais">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Por que escolher a <span class="text-primary">Open Quality</span>?</h2>
+                <p class="section-subtitle">Nossos diferenciais que fazem a diferença</p>
+            </div>
+            <div class="diferenciais-grid">
+                <div class="diferencial-card">
+                    <div class="diferencial-icon"></div>
+                    <h3 class="diferencial-title">Estratégia</h3>
+                    <p class="diferencial-text">Planejamento personalizado</p>
+                </div>
+                <div class="diferencial-card">
+                    <div class="diferencial-icon">💡</div>
+                    <h3 class="diferencial-title">Criatividade</h3>
+                    <p class="diferencial-text">Ideias que conectam</p>
+                </div>
+                <div class="diferencial-card">
+                    <div class="diferencial-icon">📈</div>
+                    <h3 class="diferencial-title">Resultados</h3>
+                    <p class="diferencial-text">Foco em performance e crescimento</p>
+                </div>
+                <div class="diferencial-card">
+                    <div class="diferencial-icon">🤝</div>
+                    <h3 class="diferencial-title">Parceria</h3>
+                    <p class="diferencial-text">Compromisso com o seu sucesso</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="servicos" id="servicos">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Nossos <span class="text-primary">Serviços</span></h2>
+                <p class="section-subtitle">Soluções completas em marketing e publicidade</p>
+            </div>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <div class="servico-icon">📢</div>
+                    <h3 class="servico-title">Marketing Estratégico</h3>
+                    <p class="servico-text">Estratégias personalizadas para alavancar seu negócio.</p>
+                    <a href="https://wa.me/5521996793320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Marketing%20Estratégico." target="_blank" class="servico-link">Saiba Mais →</a>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">🎨</div>
+                    <h3 class="servico-title">Design Gráfico</h3>
+                    <p class="servico-text">Identidades visuais impactantes.</p>
+                    <a href="https://wa.me/5521996793320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Design%20Gráfico." target="_blank" class="servico-link">Saiba Mais →</a>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">🌐</div>
+                    <h3 class="servico-title">Criação de Sites</h3>
+                    <p class="servico-text">Sites modernos e responsivos.</p>
+                    <a href="https://wa.me/5521996793320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Criação%20de%20Sites." target="_blank" class="servico-link">Saiba Mais →</a>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">📊</div>
+                    <h3 class="servico-title">Tráfego Pago</h3>
+                    <p class="servico-text">Gestão de anúncios online.</p>
+                    <a href="https://wa.me/5521996793320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Tráfego%20Pago." target="_blank" class="servico-link">Saiba Mais →</a>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">📱</div>
+                    <h3 class="servico-title">Mídias Sociais</h3>
+                    <p class="servico-text">Gerenciamento completo das redes sociais.</p>
+                    <a href="https://wa.me/5521996793320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Gestão%20de%20Mídias%20Sociais." target="_blank" class="servico-link">Saiba Mais →</a>
+                </div>
+                <div class="servico-card">
+                    <div class="servico-icon">🎬</div>
+                    <h3 class="servico-title">Produção de Conteúdo</h3>
+                    <p class="servico-text">Conteúdos relevantes e estratégicos.</p>
+                    <a href="https://wa.me/5521996793320?text=Olá!%20Gostaria%20de%20saber%20mais%20sobre%20Produção%20de%20Conteúdo." target="_blank" class="servico-link">Saiba Mais →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER VERTICAL GIF -->
+    <section class="banner-vertical">
+        <div class="container">
+            <img src="bannervert.gif" alt="Open Quality Banner">
+        </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section class="contato" id="contato">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Vamos <span class="text-primary">Conversar?</span></h2>
+            </div>
+            <div class="contato-wrapper">
+                <div class="contato-info">
+                    <div class="contato-item">
+                        <div class="contato-icon">📞</div>
+                        <div class="contato-text">
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/5521996793320" target="_blank">(21) 99679-3320</a>
+                        </div>
+                    </div>
+                    <div class="contato-item">
+                        <div class="contato-icon">✉️</div>
+                        <div class="contato-text">
+                            <h4>Email</h4>
+                            <a href="mailto:mateusdecristo021@gmail.com">mateusdecristo021@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contato-item">
+                        <div class="contato-icon">🌐</div>
+                        <div class="contato-text">
+                            <h4>Site</h4>
+                            <span>www.openquality.agencia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contato-mensagem">
+                    <h3>💛 Estamos prontos para te ajudar!</h3>
+                    <p>Sua marca merece o melhor. Vamos juntos transformar sua presença digital e alcançar resultados extraordinários. Entre em contato e descubra como podemos fazer a diferença no seu negócio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="logo1.png" alt="Open Quality">
+                    <div class="logo-text">
+                        <div>
+                            <span class="logo-open">O</span><span class="logo-pen">pen</span>
+                        </div>
+                        <span class="logo-quality">QUALITY</span>
+                    </div>
+                </div>
+                <p class="footer-text">Estratégia, criatividade e resultados para a sua marca.</p>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Open Quality. Todos os direitos reservados.</p>
+                    <p class="footer-tagline">Sua marca. Nossa estratégia. Resultados reais.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // MENU MOBILE
+        const navToggle = document.getElementById('nav-toggle');
+        const navList = document.querySelector('.nav-list');
+
+        navToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // FECHAR MENU AO CLICAR EM LINK
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+
+        // HEADER SCROLL
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(10, 14, 39, 0.98)';
+            } else {
+                header.style.backgroundColor = 'rgba(10, 14, 39, 0.95)';
+            }
+        });
+    </script>
+</body>
+                      </html>
